@@ -1,0 +1,43 @@
+declare proc month(days, first)
+declare func dayOfWeek(yy, mm, d)
+
+proc main()
+    var dw
+    dw = dayOfWeek(2018, 2, 1)
+    call month(28, dw)
+end
+
+proc month(days, first)
+    var w, d
+    var exit
+    w = 0
+    while w < first do
+        print("    ")
+        w = w + 1
+    end
+    d = 1
+    while not exit do
+        while w < 7 do
+            if d < 10 then print(" ") end
+            print("  ", d)
+            w = w + 1
+            d = d + 1
+            if d > days then
+                println()
+                exit = 1
+                break
+            end
+        end
+        if exit then break end
+        println()
+        w = 0
+    end
+end
+
+func dayOfWeek(yy, mm, d)
+    var y, m, leap
+    y = yy m = mm
+    if m < 3 then m = m + 12 y = y - 1 end
+    leap = y + y / 4 - y / 100 + y / 400
+    return (leap + (13 * m + 8) / 5 + d) % 7
+end

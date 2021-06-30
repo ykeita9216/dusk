@@ -1,0 +1,21 @@
+//学籍番号:954417
+//氏名:山本啓太
+
+//1ビット目から順に書き出す
+proc bit(n)
+    var tmp
+    tmp=n
+    while(not(tmp==0))  do //nの値が0になれば終了
+        //2で割り切れたら最下位ビットは0でありそうでなければ1である
+        if(tmp%2==1)then print("1") else  print(0) end
+        tmp=tmp/2 //1ビット右にズラす
+    end
+    println("")
+end
+
+proc main()
+    var n
+    println("値を入力")
+    input(n)
+    call bit(n)
+end

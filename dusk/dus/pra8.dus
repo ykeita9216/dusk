@@ -1,0 +1,10 @@
+proc main()
+    var n,tmp
+    println("値を入力")
+    input(n)
+    while(not(n==0))do
+        print("",n%10)
+        n=n/10
+    end
+    println("")
+end

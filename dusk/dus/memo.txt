@@ -1,0 +1,96 @@
+
+getsymbol
+シンボルの格納
+文字及び数字の格納
+expression
+演算子の割り当て
+計算はここでしているわけではない
+identifier
+予約語の格納
+アイテムを探して返す
+
+struct _oprExpnode {
+    token_t  kind;      // operators: sym_ast, sym_plus, ...
+    token_t  prefix;    // always ExpTree
+    expnode  *operand[2];
+};
+typedef struct {
+    token_t         opstack[STACK_MAX];     // operators
+    unsigned char   prec[STACK_MAX];        // the precedence of each operator
+    expnode         *nodestack[STACK_MAX];
+    int nodindex;
+} oppbody;
+struct _expnode {
+    token_t  kind;      // tok_id:variable, tok_num:int, tok_str: string-literal
+    token_t  prefix;    // 0, sym_plus, sym_minus, sym_not
+    union {
+        int64_t     intvalue;   // if kind == tok_num, or tok_str
+        varinfo     varinf;     // if kind == tok_id
+    } v;
+};
+
+typedef struct _stnode {
+    struct _stnode *next;
+    uint8_t     kind;    // nodetype
+    uint16_t    count;   // the number of args / vars
+} stnode;
+
+typedef enum {
+    node_assign, node_call, node_print, node_input,
+    node_break, node_return, node_if, node_while, node_for,
+} nodetype;
+
+struct _item {
+    token_t        token;
+    unsigned char  kind;    // idkind_t or ASCII char
+    short          offset;  // variables, index or funcs/procs,
+    union { // associated data. tok_num and tok_str use 'value'
+        long       value;   // integer value or index of string-literal
+        idRecord   *recptr; // if kind == id_undefined, used in fgetItem()
+    } a;
+};
+
+struct _argExpnode {
+    token_t  kind;      // sym_func
+    token_t  prefix;    // 0, sym_plus, sym_minus, sym_not
+    int16_t  index;     // index of functionsTable
+    int16_t  count;     // number of arguments
+    expnode  *args[1];
+};
+struct _argnode {
+    struct _stnode _stnode_common;  // caution!
+    uint16_t       offset;          // index of proc / println ?
+    union {
+        expnode        *xlist[1];   // call, print, println
+        varinfo        vlist[1];    // input
+    } p; // parameters
+};
+
+struct _funcinfo {
+    const char  *ident;
+    stnode      *body;
+    uint8_t     withbody;    // not prototype
+    uint8_t     rtntype;     // 0:proc, 1:func
+    int16_t     params;      // number of parameters
+    int16_t     localvars;   // number of local variables
+};
+順番
+main内の処理
+各初期化
+parseProgra(function)で各記述内容を構文木に格納?メイン部分のインデックスを返す
+この関数内でEOFがくるまで記述内容の格納を行なっているはず
+chが0で判断しているようだが各行ごとの文をtinのbuffに格納
+
+
+
+おそらく重要というか面倒なファイル及び関数
+fgetitem(getitem)item型を返す
+おそらくトークン単位で返している?、確定空白文字出ないとループを抜け識別に入る。
+正確には判別しているのはアルファベットか数字か程度、その後のスイッチ文内の関数で識別子単位で判断する。
+ただ実際に読み込んでいるのはここではない、ungetflagなどもあるので入手するかしないかの判断もしているかも?
+func_headerで関数名を読み込んでいる
+term最初のgetitemで数字が読み込まれた。
+expressionでの永久ループについて
+
+
+get_new_lineは改行までtimのbufferに読み込む。インデックスは毎回1で返しているが不明。改行の後に0を追加するためここで区切りを判断している?

@@ -1,0 +1,27 @@
+proc main()
+    var n, nn
+    var ans
+    var count
+    ans=1
+    count=2
+    println("値を入力")
+    input(n,nn)
+    if (n>nn) then
+        var tmp
+        tmp=nn
+        nn=n
+        n=tmp
+    end
+    while (count<=n)do
+        if((n%count==0)and(nn%count==0))then
+            ans=ans*count
+            n=n/count
+            nn=nn/count
+            count=2
+        else
+            count=count+1
+        end
+    end
+    ans=ans*n*nn
+    println("",ans)
+end

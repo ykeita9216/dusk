@@ -1,0 +1,13 @@
+proc hanoi(a, b, c, n)
+    if n <= 0 then return end
+    call hanoi(a, c, b, n - 1)
+    println(a, " -> ", b)
+    call hanoi(c, b, a, n - 1)
+end
+
+proc main()
+    var n
+    println("円盤の枚数を入力")
+    input(n)
+    call hanoi(1, 2, 3, n)
+end

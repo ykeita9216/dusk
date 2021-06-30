@@ -1,0 +1,21 @@
+//学籍番号:954417
+//氏名:山本啓太
+
+//4で割り切れるものは閏年である
+//その中で100で割り切れるものは閏年ではない
+//100で割り切れるものの中で400で割り切れるものは閏年である
+proc main()
+    var n,flag
+    flag=0//閏年かを判定するフラグ
+    println("値を入力")
+    input(n)
+    if(n%4==0)then
+        if(n%100==0)then
+            if(n%400==0)then
+                flag=1
+            end
+        else flag=1
+        end
+    end
+    if (flag)then println("Yes") else println("No") end
+end

@@ -1,0 +1,11 @@
+
+proc main()
+    var n
+    println("値を入力")
+    input(n)
+    for var i=0 to n-1 do
+        print("",i)
+        print("----+----")
+    end
+    println("",n)
+end

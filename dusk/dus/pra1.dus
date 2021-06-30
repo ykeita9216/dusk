@@ -1,0 +1,15 @@
+
+proc main()
+    var n
+    var flag
+    flag = 1
+    println("値を入力")
+    input(n)
+    for var i = 2 to n-1 do
+        if (n%i==0) then
+            flag = 0
+            break
+        end
+    end
+    if (flag)then println("Yes") else println("No") end
+end

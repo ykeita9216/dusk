@@ -1,0 +1,25 @@
+proc main()
+    var n
+    println("値を入力")
+    input(n)
+    
+    print("+")
+    for var i=1 to n do
+        print("-")
+    end
+    println("+")
+    
+    for var i=1 to n do
+        print("|")
+        for var j=1 to n do
+            print(" ")
+        end
+        println("|")
+    end
+    
+    print("+")
+    for var i=1 to n do
+        print("-")
+    end
+    println("+")
+end
