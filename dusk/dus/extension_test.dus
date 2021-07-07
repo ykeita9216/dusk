@@ -1,4 +1,11 @@
 proc main()
 var f0
-f0=5+2+4+3
+f0=1
+while f0 && (f0<5) do
+    f0=f0+1
+end
+for f0 = 0 to (0 || 1) do
+    print(" ",5 && 0)
+end
+if(f0 && 0)then println(": ",f0 && 0) end
 end

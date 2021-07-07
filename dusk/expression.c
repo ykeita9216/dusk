@@ -4,6 +4,7 @@
 #include "expression.h"
 #include "exp_imp.h"
 #include "abort.h"
+/*expressionに追加*/
 
 static int precedence(token_t op)
 {
@@ -52,6 +53,7 @@ expnode *expression(void)
     oppbody opp;
     item s;
     opp.nodindex = 0;
+
     for ( ; ; ) {
         opp.nodestack[opp.nodindex++] = term();
         s = getItem();

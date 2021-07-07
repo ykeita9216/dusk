@@ -1,0 +1,6 @@
+
+token.hに追加
+indentifierに追加
+expresiionに追加
+evaluateに追加
+get_symbolに追加

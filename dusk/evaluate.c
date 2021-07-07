@@ -8,6 +8,7 @@
 #include "stnode_imp.h"
 #include "strliteral.h"
 #include "abort.h"
+/*applyOperatorに追加*/
 
 static void applyOperator(int opr) // ++sp by this call
 {
@@ -32,6 +33,8 @@ static void applyOperator(int opr) // ++sp by this call
         case sym_lt:    val = BOOL(o1 < o2); break;
         case sym_geq:   val = BOOL(o1 >= o2); break;
         case sym_leq:   val = BOOL(o1 <= o2); break;
+        case sym_AND:   val = BOOL(o1 && o2); break;
+        case sym_OR:    val = BOOL(o1 || o2); break;
         default:
             assert(false); break;
     }
@@ -44,7 +47,6 @@ void evaluate(const expnode *expptr) // --sp by this call
     const argExpnode *agp;
     if (expptr->prefix == ExpTree) { // expression tree
         oprExpnode *opx = (oprExpnode *)expptr;
-        int a=0;
         evaluate(opx->operand[0]);
         if (opx->operand[1]) { // binary operators
             evaluate(opx->operand[1]);

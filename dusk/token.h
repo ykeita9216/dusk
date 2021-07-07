@@ -1,5 +1,7 @@
 /* Duskul version 0.1.1,  2018.03.13,   Takeshi Ogihara, (C) 2018 */
 /* Duskul version 1.0.3,  2019.06.01 */
+
+/*tokenに&&と||を追加*/
 #if !defined(__TOKEN_H__)
 #define __TOKEN_H__
 
@@ -22,9 +24,10 @@ enum token {
     /* ---- the followings are reserved words ---- */
     reserved_word_0,
     sym_and = reserved_word_0,
+    sym_AND,
     sym_break, sym_call, sym_decl, sym_do, sym_else, sym_elsif,
     sym_end, sym_for, sym_func, sym_if, sym_input, sym_not,
-    sym_or, sym_print, sym_println, sym_proc, sym_return,
+    sym_or,sym_OR, sym_print, sym_println, sym_proc, sym_return,
     sym_step, sym_then, sym_to, sym_var, sym_while,
     all_normal_symbols,
     /* ---- Special Tokens ---- */

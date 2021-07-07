@@ -1,5 +1,6 @@
 /* Duskul version 0.1.5,  2018.08.12,   Takeshi Ogihara, (C) 2018 */
 /* Duskul version 1.0.3,  2019.06.01 */
+/*reservedに追加*/
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
@@ -10,8 +11,8 @@
 #define HASH_MAX        INT32_MAX
 
 static const char * const reserved[] = {
-    "and", "break", "call", "declare", "do", "else", "elsif", "end",
-    "for", "func", "if", "input", "not", "or", "print", "println",
+    "and","AND" ,"break", "call", "declare", "do", "else", "elsif", "end",
+    "for", "func", "if", "input", "not","or","OR","print", "println",
     "proc", "return", "step", "then", "to", "var", "while",
     NULL
 };

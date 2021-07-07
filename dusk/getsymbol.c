@@ -4,6 +4,8 @@
 #include "strliteral.h"
 #include "abort.h"
 
+/*get_symbolに追加*/
+
 #define STRINGMAX   1024
 
 #define BL  ca_blank
@@ -93,6 +95,24 @@ item getsymbol(int ch, TIN *tip)
             default: break; // never
         }
         undoch(nx, tip);
+    }
+    if(ch=='&')//演算時に二つ&&がない時点でおかしいのでここでエラーを出してもいいかも
+    {
+        int nx = nextch(tip);
+        if (nx!='&') {
+            if (nx != EOF) undoch(nx, tip);
+            return s;
+        }
+        s.token=sym_AND;
+    }
+    if(ch=='|')//演算時に二つ&&がない時点でおかしいのでここでエラーを出してもいいかも
+    {
+        int nx = nextch(tip);
+        if (nx!='|') {
+            if (nx != EOF) undoch(nx, tip);
+            return s;
+        }
+        s.token=sym_OR;
     }
     return s;
 }

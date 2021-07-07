@@ -47,7 +47,6 @@ expnode *term(void)
     item s = getItem();
     expnode *termp = NULL;
     int prefix = 0; // none
-    printf("aaa\n");
     if (symsetHas(prefix_set, s.token)) {
         prefix = s.token;
         s = getItem();

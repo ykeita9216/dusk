@@ -2,6 +2,7 @@
 /* Duskul version 1.0.3,  2019.06.01 */
 #include <assert.h>
 #include "symset.h"
+/*infixsetに追加*/
 
 /* extern */
 symset_t prefix_set, infix_set;
@@ -12,7 +13,7 @@ void symInitialize(void) {
         sym_plus, sym_minus, sym_not, tok_EOD }
     );
     infix_set = symsetCreate((token_t[]){
-        sym_and, sym_or, sym_equal, sym_neq, sym_gt, sym_lt, sym_geq,
+        sym_and,sym_AND, sym_or,sym_OR, sym_equal, sym_neq, sym_gt, sym_lt, sym_geq,
         sym_leq, sym_plus, sym_minus, sym_ast, sym_sls, sym_pcnt, tok_EOD }
     );
 }
