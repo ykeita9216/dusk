@@ -8,7 +8,8 @@
 #include "stnode_imp.h"
 #include "strliteral.h"
 #include "abort.h"
-/*applyOperatorに追加*/
+/*applyOperatorに追加,削除
+ evaluateに追加*/
 
 static void applyOperator(int opr) // ++sp by this call
 {
@@ -33,8 +34,8 @@ static void applyOperator(int opr) // ++sp by this call
         case sym_lt:    val = BOOL(o1 < o2); break;
         case sym_geq:   val = BOOL(o1 >= o2); break;
         case sym_leq:   val = BOOL(o1 <= o2); break;
-        case sym_AND:   val = BOOL(o1 && o2); break;
-        case sym_OR:    val = BOOL(o1 || o2); break;
+        case sym_AND:   val = BOOL(o2); break;//前提としてo1は1
+        case sym_OR:    val = BOOL(o2); break;//前提としてo1は0
         default:
             assert(false); break;
     }
@@ -49,8 +50,16 @@ void evaluate(const expnode *expptr) // --sp by this call
         oprExpnode *opx = (oprExpnode *)expptr;
         evaluate(opx->operand[0]);
         if (opx->operand[1]) { // binary operators
-            evaluate(opx->operand[1]);
-            applyOperator(expptr->kind);
+            if(expptr->kind==sym_AND && stack[sp] == false){}//&&の短絡評価をする部分
+            else if(expptr->kind==sym_OR)//||の短絡評価をする部分
+            {
+                stack[sp]=true;
+            }
+            else
+            {
+                evaluate(opx->operand[1]);
+                applyOperator(expptr->kind);
+            }
         }else { // unary operators
             if (expptr->kind == sym_minus) stack[sp] *= -1;
             else if (expptr->kind == sym_not)

@@ -96,21 +96,19 @@ item getsymbol(int ch, TIN *tip)
         }
         undoch(nx, tip);
     }
-    if(ch=='&')//演算時に二つ&&がない時点でおかしいのでここでエラーを出してもいいかも
+    if(ch=='&')//演算時に二つ&&がない時点でおかしいのでここでエラーを出す
     {
         int nx = nextch(tip);
         if (nx!='&') {
-            if (nx != EOF) undoch(nx, tip);
-            return s;
+            abortMessageWithToken("undef id", &s);
         }
         s.token=sym_AND;
     }
-    if(ch=='|')//演算時に二つ&&がない時点でおかしいのでここでエラーを出してもいいかも
+    else if(ch=='|')//演算時に二つ||がない時点でおかしいのでここでエラーを出す
     {
         int nx = nextch(tip);
         if (nx!='|') {
-            if (nx != EOF) undoch(nx, tip);
-            return s;
+            abortMessageWithToken("undef id", &s);
         }
         s.token=sym_OR;
     }

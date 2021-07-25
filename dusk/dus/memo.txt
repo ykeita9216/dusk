@@ -9,6 +9,8 @@ identifier
 予約語の格納
 アイテムを探して返す
 
+itemを取得するとき、頭が、アルファベットか、数字か、シンボルかで判断する。アルファベットの場合、アルファベットまたは、数字が来るまでそれが一連のものと考える。
+
 struct _oprExpnode {
     token_t  kind;      // operators: sym_ast, sym_plus, ...
     token_t  prefix;    // always ExpTree

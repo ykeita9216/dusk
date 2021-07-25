@@ -15,7 +15,7 @@ enum token {
     sym_quo, sym_shp, sym_doll, sym_pcnt, sym_amp, sym_squo,
     sym_lpar, sym_rpar, sym_ast, sym_plus, sym_comma, sym_minus, sym_dot,
     sym_sls, sym_col, sym_scol, sym_lt, sym_eq, sym_gt, sym_ques,
-    sym_at, sym_lbk, sym_bsls, sym_rbk, sym_us,
+    sym_at, sym_lbk, sym_bsls, sym_rbk, sym_us,sym_AND,sym_OR,
     sym_lbrace, sym_vbar, sym_rbrace,
     /* ---- combined symbols ---- */
     combined_symbol_0,
@@ -24,10 +24,9 @@ enum token {
     /* ---- the followings are reserved words ---- */
     reserved_word_0,
     sym_and = reserved_word_0,
-    sym_AND,
     sym_break, sym_call, sym_decl, sym_do, sym_else, sym_elsif,
     sym_end, sym_for, sym_func, sym_if, sym_input, sym_not,
-    sym_or,sym_OR, sym_print, sym_println, sym_proc, sym_return,
+    sym_or,sym_print, sym_println, sym_proc, sym_return,
     sym_step, sym_then, sym_to, sym_var, sym_while,
     all_normal_symbols,
     /* ---- Special Tokens ---- */

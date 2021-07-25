@@ -4,13 +4,16 @@
 #include "expression.h"
 #include "exp_imp.h"
 #include "abort.h"
-/*expressionに追加*/
+/*expressionに追加,削除
+ precedenceに追加*/
 
 static int precedence(token_t op)
 {
     switch (op) {
-        case sym_or: return 0;
-        case sym_and: return 1;
+        case sym_or:
+        case sym_OR: return 0;
+        case sym_and:
+        case sym_AND: return 1;
         case sym_plus:
         case sym_minus: return 3;
         case sym_ast:
