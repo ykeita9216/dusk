@@ -51,7 +51,7 @@ void evaluate(const expnode *expptr) // --sp by this call
         evaluate(opx->operand[0]);
         if (opx->operand[1]) { // binary operators
             if(expptr->kind==sym_AND && stack[sp] == false){}//&&の短絡評価をする部分
-            else if(expptr->kind==sym_OR && BOOL(stack[sp] == true))//||の短絡評価をする部分
+            else if(expptr->kind==sym_OR)//||の短絡評価をする部分
             {
                 stack[sp]=true;
             }

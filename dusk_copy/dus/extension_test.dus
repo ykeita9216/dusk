@@ -82,7 +82,7 @@ proc Test4()//四則演算が混じったテスト
     
     println("")
     
-    println("式:f0 = 1 && 4 * 3 || 2 + 2 - 4 && f(1)")
+    println("式:f0 = 0 || 2 + 4 * 9 || f(1)")
     f0 = 1 && 4 * 3 || 2 + 2 - 4 && f(1)
     println("値: ",f0)
     
@@ -112,11 +112,11 @@ proc Test5()//全ての演算子を用いたテスト
     println("")
 end
 proc main()
-    //call Test1()
-    //call Test2()
-    //call Test3()
+    call Test1()
+    call Test2()
+    call Test3()
     call Test4()
-    //call Test5()
+    call Test5()
     //call ErrorTest()
 end
 
